@@ -6,7 +6,7 @@ import ShoppingCartReducer from './ShoppingCart/ShoppingCartSlice';
 const rootReducer = combineReducers({
   profile: ProfileReducer,
   products: ProductReducer,
-  sales: ShoppingCartReducer
+  sales: ShoppingCartReducer,
 });
 
 export default rootReducer;
