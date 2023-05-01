@@ -6,7 +6,7 @@ import './Home.css';
 
 function Home() {
   const products = useSelector(state => state.products.products);
-  const selectedItems = useSelector(state => state.sales);
+  const selectedItems = useSelector(state => state.sales.salesItems);
   const dispatch = useDispatch();
 
   const handleSelect = (item) => {

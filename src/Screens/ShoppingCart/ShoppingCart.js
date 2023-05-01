@@ -1,51 +1,51 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeSale, updateQuantity, updateCash} from '../../Components/Redux/ShoppingCart/ShoppingCartSlice'
+import { removeSale, updateQuantity, updateCash } from '../../Components/Redux/ShoppingCart/ShoppingCartSlice';
 import Header from '../../Components/Header/Header';
 import './ShoppingCart.css';
 
 function ShoppingCart() {
-    const sales = useSelector(state => state.shoppingCart.sales);
-    const cash = useSelector(state => state.shoppingCart.cash);
-    const dispatch = useDispatch();
-    
-    
+  const sales = useSelector((state) => state.sales.salesItem);
+  const cash = useSelector((state) => state.sales.cash);
 
-    const handleQuantityChange = (id, quantity) => {
-      dispatch(updateQuantity({ id, quantity }));
-    };
-  
-    const handleDelete = (id) => {
-      dispatch(removeSale(id));
-    };
-  
-    const getTotalPrice = (sale) => {
-      return sale.price * sale.quantity;
-    };
-  
-    const getGrandTotalPrice = () => {
-      let grandTotal = 0;
-      sales.forEach((sale) => {
-        grandTotal += getTotalPrice(sale);
-      });
-      return grandTotal.toFixed(2);
-    };
-  
-    const getChange = () => {
-      return cash - getGrandTotalPrice();
-    };
-  
-    const handlePay = () => {
-      const grandTotal = getGrandTotalPrice();
-      const change = cash - grandTotal;
-      alert(`Paid: $${cash.toFixed(2)}\nChange: $${change.toFixed(2)}`);
-    };
-  
-    const handleCashChange = (e) => {
-      dispatch(updateCash(parseInt(e.target.value) >= 0 ? parseInt(e.target.value) : 0));
-    };
-  
-return (
+  const dispatch = useDispatch();
+
+  const handleQuantityChange = (id, quantity) => {
+    dispatch(updateQuantity({ id, quantity }));
+  };
+
+  const handleDelete = (id) => {
+    dispatch(removeSale(id));
+  };
+
+  const getTotalPrice = (sale) => {
+    return sale.price * sale.quantity;
+  };
+
+  const getGrandTotalPrice = () => {
+    let grandTotal = 0;
+    sales.forEach((sale) => {
+      grandTotal += getTotalPrice(sale);
+    });
+    return grandTotal.toFixed(2);
+  };
+
+  const getChange = () => {
+    return cash - getGrandTotalPrice();
+  };
+
+  const handlePay = (e) => {
+    e.preventDefault();
+    const grandTotal = getGrandTotalPrice();
+    const change = cash - grandTotal;
+    alert(`Paid: $${cash.toFixed(2)}\nChange: $${change.toFixed(2)}`);
+  };
+
+  const handleCashChange = (e) => {
+    dispatch(updateCash(parseInt(e.target.value) >= 0 ? parseInt(e.target.value) : 0));
+  };
+
+  return (
     <div>
       <Header />
       <div className='container'>
@@ -95,12 +95,7 @@ return (
         <form onSubmit={handlePay}>
           <div className='payment'>
             <label htmlFor='cash'>Cash:</label>
-            <input
-              type='number'
-              id='cash'
-              value={cash}
-              onChange={(e) => handleCashChange}
-            />
+            <input type='number' id='cash' value={cash} onChange={handleCashChange} />
           </div>
           {cash > 0 && cash < getGrandTotalPrice() && <div className='insufficient'>Insufficient cash</div>}
           <div className='payment'>
@@ -114,14 +109,12 @@ return (
             </div>
           )}
           <div className='payment'>
-            <button type='submit' disabled={cash === 0 || cash < getGrandTotalPrice()}>
-              Pay
-            </button>
+            <button type='submit' disabled={cash === 0 || cash < getGrandTotalPrice()}>Pay</button>
           </div>
         </form>
       </div>
     </div>
-  );      
+  );
 }
 
 export default ShoppingCart;
