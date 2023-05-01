@@ -63,7 +63,7 @@ function CartLogs() {
     <div>
       <Header />
       <div className='container'>
-        <h1 style={{ marginTop: 40 }}>Shopping Cart</h1>
+        <h1 style={{ marginTop: 40 }}>Shopping Cart Logs</h1>
         <table>
           <thead>
             <tr>
