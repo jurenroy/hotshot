@@ -1,50 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from '../../Components/Header/Header';
+import { addSale } from '../../Components/Redux/ShoppingCart/ShoppingCartSlice';
+import './Home.css';
 
 function Home() {
-  const items = [
-    { name: "Jack Daniel's Tennessee Whiskey", price: "$25.99", imgSrc: "jack-daniels.png" },
-    { name: "Bacardi Superior White Rum", price: "$19.99", imgSrc: "bacardi-rum.png" },
-    { name: "Smirnoff Vodka", price: "$14.99", imgSrc: "smirnoff-vodka.png" },
-    { name: "Captain Morgan Spiced Rum", price: "$22.99", imgSrc: "captain-morgan.png" },
-    { name: "Johnnie Walker Black Label Blended Scotch Whisky", price: "$39.99", imgSrc: "johnnie-walker.png" },
-    { name: "Tanqueray London Dry Gin", price: "$29.99", imgSrc: "tanqueray-gin.png" },
-  ];
-  
+  const products = useSelector(state => state.products.products);
+  const selectedItems = useSelector(state => state.sales);
+  const dispatch = useDispatch();
+
+  const handleSelect = (item) => {
+    // Check if item has already been selected
+    if (selectedItems.find(sale => sale.id === item.id)) {
+      alert("Item has already been selected");
+      return;
+    }
+
+    // Dispatch addSale action with selected item
+    dispatch(addSale(item));
+  }
 
   return (
     <div>
       <Header />
       <div className='container'>
-        <h1>HotShot Liquor Store</h1>
+        <h1 style={{marginTop: 45}}>HotShot Liquor Store</h1>
       </div>
-
-      <div className='container'>
-        <h2>Featured Items</h2>
+      <div className="image-container">
         <div className='row'>
-          {items.slice(0, 3).map((item) => (
-            <div key={item.name} className='col-4'>
-              <h3>{item.name}</h3>
-              <p>{item.description}</p>
-              <p>{item.price}</p>
-            </div>
-          ))}
-        </div>
-        <div className='row'>
-          {items.slice(3, 6).map((item) => (
-            <div key={item.name} className='col-4'>
-              <h3>{item.name}</h3>
-              <p>{item.description}</p>
-              <p>{item.price}</p>
-            </div>
-          ))}
-        </div>
-        <div className='row'>
-          {items.slice(6, 9).map((item) => (
-            <div key={item.name} className='col-4'>
-              <h3>{item.name}</h3>
-              <p>{item.description}</p>
-              <p>{item.price}</p>
+          {products.map((item, index) => (
+            <div key={item.id} className='col-4'>
+              <div className="image-wrapper">
+                <img src={item.image} alt={item.name} />
+                <button onClick={() => handleSelect(item)} disabled={selectedItems.find(sale => sale.id === item.id)}>Select</button>
+              </div>
+              {(index + 1) % 3 === 0 && <div className='clearfix'></div>}
             </div>
           ))}
         </div>
