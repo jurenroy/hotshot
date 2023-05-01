@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './Components/Redux/store';
+import { store, persistor } from './Components/Redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 import Home from './Screens/Home/Home';
 import ShoppingCart from './Screens/ShoppingCart/ShoppingCart';
 import Profile from './Screens/Profile/Profile';
@@ -13,6 +14,7 @@ import AddProduct from './Screens/AddProduct/AddProduct';
 function App() {
   return (
     <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -23,7 +25,8 @@ function App() {
           <Route path="/addproduct" element={<AddProduct/>} />
         </Routes>
       </Router>
-    </Provider>
+      </PersistGate>
+  </Provider>
   );
 }
 

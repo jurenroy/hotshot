@@ -31,6 +31,8 @@ const AddProduct = () => {
     };
   };
 
+  const isDisabled = !name || !price || !image;
+
   return (
     <div>
       <Header />
@@ -49,7 +51,7 @@ const AddProduct = () => {
             <label htmlFor="image">Image:</label>
             <input type="file" id="image" accept="image/*" onChange={handleImageChange} />
           </div>
-          <button type="submit">Add Product</button>
+          <button type="submit" disabled={isDisabled}>Add Product</button>
         </form>
       </div>
     </div>
