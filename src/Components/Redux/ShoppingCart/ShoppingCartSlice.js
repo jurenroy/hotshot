@@ -26,9 +26,13 @@ const ShoppingCartSlice = createSlice({
     updateCash: (state, action) => {
       state.cash = action.payload;
     },
+    clearSales: (state) => {
+      state.salesItems = [];
+      state.cash = 0;
+    }
   },
 });
 
-export const { addSale, removeSale, updateQuantity, updateCash } = ShoppingCartSlice.actions;
+export const { addSale, removeSale, updateQuantity, updateCash, clearSales } = ShoppingCartSlice.actions;
 
 export default ShoppingCartSlice.reducer;

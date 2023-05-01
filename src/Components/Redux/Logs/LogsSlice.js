@@ -1,11 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const logsSlice = createSlice({
+const LogsSlice = createSlice({
   name: 'logs',
   initialState: [],
   reducers: {
     addLog: (state, action) => {
-      state.push(action.payload);
+      const timestamp = new Date().toISOString();
+      state.push({
+        message: action.payload,
+        timestamp,
+      });
+    },
+    deleteLog: (state, action) => {
+      state.splice(action.payload, 1);
     },
     clearLogs: (state) => {
       state.length = 0;
@@ -13,6 +20,6 @@ const logsSlice = createSlice({
   },
 });
 
-export const { addLog, clearLogs } = logsSlice.actions;
+export const { addLog, deleteLog, clearLogs } = LogsSlice.actions;
 
-export default logsSlice.reducer;
+export default LogsSlice.reducer;

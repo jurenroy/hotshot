@@ -1,13 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeSale, updateQuantity, updateCash, clearSales } from '../../Components/Redux/ShoppingCart/ShoppingCartSlice';
-import { addLog } from '../../Components/Redux/Logs/LogsSlice';
-import Header from '../../Components/Header/Header';
-import './ShoppingCart.css';
+import { removeSale, updateQuantity, updateCash, clearSales } from '../../../Components/Redux/ShoppingCart/ShoppingCartSlice';
+import { addLog } from '../../../Components/Redux/Logs/LogsSlice';
+import Header from '../../../Components/Header/Header';
+import { useParams } from 'react-router-dom';
+import './CartLogs.css';
 
-function ShoppingCart() {
-  const sales = useSelector((state) => state.sales.salesItems);
-  const cash = useSelector((state) => state.sales.cash);
+function CartLogs() {
+  const { index } = useParams();
+  const sales = useSelector((state) => state.log[index].message.sales);
+  const cash = useSelector((state) => state.log[index].message.cash);
 
   const dispatch = useDispatch();
 
@@ -127,4 +129,4 @@ function ShoppingCart() {
   );
 }
 
-export default ShoppingCart;
+export default CartLogs;

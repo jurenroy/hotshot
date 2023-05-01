@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from '../../Components/Header/Header';
 import { addSale } from '../../Components/Redux/ShoppingCart/ShoppingCartSlice';
@@ -18,6 +18,7 @@ function Home() {
 
     // Dispatch addSale action with selected item
     dispatch(addSale(item));
+    alert("Item has been selected");
   }
 
   return (

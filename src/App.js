@@ -5,6 +5,9 @@ import store from './Components/Redux/store';
 import Home from './Screens/Home/Home';
 import ShoppingCart from './Screens/ShoppingCart/ShoppingCart';
 import Profile from './Screens/Profile/Profile';
+import Logs from './Screens/Logs/Logs';
+import CartLogs from './Screens/Logs/CartLogs.js/CartLogs';
+
 
 function App() {
   return (
@@ -14,6 +17,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/profile" element={<Profile/>} />
+          <Route path="/logs" element={<Logs/>} />
+          <Route path="/cartlogs/:index" element={<CartLogs/>} />
         </Routes>
       </Router>
     </Provider>
