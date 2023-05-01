@@ -1,0 +1,71 @@
+.container {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 1%;
+    margin-top: 300px;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 520px;
+    flex-direction: column;
+    align-items: center; /* center vertically */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    max-width: 500px;
+    margin-top: 30px;
+    background-color: #666666;
+    padding: 50px;
+  }
+  
+  label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: inline-block;
+    text-align: right;
+    width: 150px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="file"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: inline-block;
+    width: 300px;
+  }
+  
+  button[type="submit"] {
+    background-color: #a3a3a3;
+    border: none;
+    border-radius: 4px;
+    color: #000000;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
+    width: 200px;
+    margin: 10px auto 0;
+    display: block;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #d9d9d9d9;
+    color: #ffffff;
+  }
+  
+  input[type="file"] {
+    margin-bottom: 20px;
+    display: inline-block;
+    width: 300px;
+    vertical-align: middle;
+  }
+  

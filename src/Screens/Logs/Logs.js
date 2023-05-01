@@ -36,7 +36,7 @@ function Logs() {
             {logs.map((log, index) => (
               <tr key={index}>
                 <td>
-                  <button onClick={() => handleView(index)}>View{log.message.sales[0].name}</button>
+                  <button onClick={() => handleView(index)}>View</button>
                 </td>
                 <td>{moment(log.timestamp).format('MMM D, YYYY h:mm A')}</td>
                 <td>

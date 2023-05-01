@@ -1,15 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeSale, updateQuantity, updateCash, clearSales } from '../../../Components/Redux/ShoppingCart/ShoppingCartSlice';
-import { addLog } from '../../../Components/Redux/Logs/LogsSlice';
+import { removeSale, updateQuantity, updateCash, } from '../../../Components/Redux/ShoppingCart/ShoppingCartSlice';
+import { addLog, deleteLog } from '../../../Components/Redux/Logs/LogsSlice';
 import Header from '../../../Components/Header/Header';
 import { useParams } from 'react-router-dom';
 import './CartLogs.css';
 
 function CartLogs() {
-  const { index } = useParams();
-  const sales = useSelector((state) => state.log[index].message.sales);
-  const cash = useSelector((state) => state.log[index].message.cash);
+    const { index } = useParams();
+    const log = useSelector((state) => state.logs[index]);
+    const sales = log.message.sales;
+    const cash = log.message.cash;
 
   const dispatch = useDispatch();
 
@@ -55,8 +56,7 @@ function CartLogs() {
     // Dispatch the salesItems and cash values to the LogsSlice
     dispatch(addLog({ sales, cash }));
 
-    // Clear the salesItems array and set the cash value to 0 in the ShoppingCartSlice
-    dispatch(clearSales());
+    dispatch(deleteLog(index));
   };
 
   return (
@@ -110,7 +110,7 @@ function CartLogs() {
   <div className='activity'>
     <input type='number' id='total' value={getGrandTotalPrice()} readOnly className='totali'/>
     <input type='number' id='cash' value={cash} onChange={handleCashChange} className='cashi'/>
-    <button type='submit' disabled={cash === 0 || cash < getGrandTotalPrice()} className='payb' onClick={() => {
+    <button type='submit' disabled={true} className='payb' onClick={() => {
         if (sales.length === 0) {alert('Please select item(s) first');} else {handlePay();}}}>Pay</button>
     {cash >= getGrandTotalPrice() && (
       <input type='number' id='change' value={getChange()} readOnly className='changei'/>

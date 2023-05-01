@@ -14,7 +14,7 @@ function Header() {
       };
     
       const handleAddItem = () => {
-        // Handle adding a new item to inventory
+        navigate('/addproduct')
       };
     
       const handleSaleInventory = () => {
