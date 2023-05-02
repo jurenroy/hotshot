@@ -81,7 +81,7 @@ function ShoppingCart() {
                     <span>{sale.name}</span>
                   </div>
                 </td>
-                <td>${sale.price.toFixed(2)}</td>
+                <td>₱{sale.price.toFixed(2)}</td>
                 <td>
                   <div className='quantity'>
                     <button onClick={() => handleQuantityChange(sale.id, sale.quantity - 1)}>-</button>
@@ -94,7 +94,7 @@ function ShoppingCart() {
                     <button onClick={() => handleQuantityChange(sale.id, sale.quantity + 1)}>+</button>
                   </div>
                 </td>
-                <td>${getTotalPrice(sale).toFixed(2)}</td>
+                <td>₱{getTotalPrice(sale).toFixed(2)}</td>
                 <td>
                   <button className='delete' onClick={() => handleDelete(sale.id)}>
                     Delete

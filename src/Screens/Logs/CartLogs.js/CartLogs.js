@@ -83,22 +83,22 @@ function CartLogs() {
                     <span>{sale.name}</span>
                   </div>
                 </td>
-                <td>${sale.price.toFixed(2)}</td>
+                <td>₱{sale.price.toFixed(2)}</td>
                 <td>
                   <div className='quantity'>
-                    <button onClick={() => handleQuantityChange(sale.id, sale.quantity - 1)}>-</button>
+                    <button disabled={true} onClick={() => handleQuantityChange(sale.id, sale.quantity - 1)}>-</button>
                     <input
                       type='number'
                       min='1'
                       value={sale.quantity}
                       onChange={(e) => handleQuantityChange(sale.id, parseInt(e.target.value))}
                     />
-                    <button onClick={() => handleQuantityChange(sale.id, sale.quantity + 1)}>+</button>
+                    <button disabled={true} onClick={() => handleQuantityChange(sale.id, sale.quantity + 1)}>+</button>
                   </div>
                 </td>
-                <td>${getTotalPrice(sale).toFixed(2)}</td>
+                <td>₱{getTotalPrice(sale).toFixed(2)}</td>
                 <td>
-                  <button className='delete' onClick={() => handleDelete(sale.id)}>
+                  <button disabled={true} className='delete' onClick={() => handleDelete(sale.id)}>
                     Delete
                   </button>
                 </td>
